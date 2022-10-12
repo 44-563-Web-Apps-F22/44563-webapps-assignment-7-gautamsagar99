@@ -1,56 +1,89 @@
 <!DOCTYPE html>
-<html> <head> <style>
-    .flex-container {
-      display: flex;  flex-direction:row;
-      background-color: red;
-  }
+<html>
 
-.flex-container > div {  /*div children of the flex container*/
-  background-color: #f1f1f1; 
-  margin: 10px;  padding: 20px;  font-size: 30px;
-}
+<head>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
 
-/* Responsive layout */
-@media (max-width: 600px) { 
-	 .flex-container{
-		 flex-direction:column;
-		 background-color: green;
-	  }
-	}
-</style></head>
+        .flex-container>div {
+            /*div children of the flex container*/
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
 
 
 
 <body>
     <h2>Gautam Sagar Mallela - builds a cycler</h2>
-    <input type="text" id="textID">
-		<div class="flex-container" id="target">
-		  <div class="cycler">row item 1</div>   
-		  <div class="cycler">row item 2</div>  
-		  <div class="cycler">row item 3</div>  
-		</div>
-	
-	<p> Press the button to create an new element of type div and then add it to the container.
-		</p>
-		<button onclick="makeNewDiv()">Add value</button>
-	
-	
+    <input type="text" id="textID"/>
+    <br/>
+    <br/>
+    <div class="flex-container" id="target">
+        <div class="cycler">row item 1</div>
+        <div class="cycler">row item 2</div>
+        <div class="cycler">row item 3</div>
+    </div>
+   
+
+    <p> Press the button to create an new element of type div and then add it to the container.
+    </p>
+    <button onclick="makeNewDiv()">Add value</button>
+    <button onclick="get()">Get</button>
+    <button onclick="spin()">Spin</button>
+
+
 </body>
 <script>
-	function makeNewDiv(){
-		/* make the div and its text */
+    function makeNewDiv() {
+        /* make the div and its text */
 
-		let element = document.createElement("div")
+        let element = document.createElement("div")
 
         let inputElement = document.getElementById('textID').value
 
-		element.innerHTML = inputElement
-		element.className = "cycler"
+        element.innerHTML = inputElement
+        element.className = "cycler"
 
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
-		
-	}
+        /* add it to the container */
+        let container = document.getElementById('target')
+        container.appendChild(element)
+    }
+
+    function get() {
+       let cyclerItems  = document.getElementsByClassName('cycler')
+       if(cyclerItems.length > 0){
+            cyclerItems[cyclerItems.length - 1].remove()
+       }
+
+    }
+
+    function spin() {
+        let cyclerItems  = document.getElementsByClassName('cycler')
+       if(cyclerItems.length > 1){
+        let removedText = cyclerItems[cyclerItems.length - 1].innerText
+        let removedItem = cyclerItems[cyclerItems.length - 1].remove()
+        let ele = document.createElement('div')
+        ele.innerText = removedText
+        document.getElementById('target').insertBefore(ele, document.getElementById('target').firstChild)
+       }
+       
+    }
 </script>
-</html>	
+
+</html>
