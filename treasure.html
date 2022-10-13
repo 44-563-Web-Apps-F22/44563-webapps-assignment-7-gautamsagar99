@@ -20,6 +20,9 @@
     <p id="chests" class="text-center text-primary  ">Number of chests checked is zero.</p>
     <p id="score" class="text-center text-info">Score is unknown.</p>
     <p id="help" onclick="help()" class="text-center text-body">Help report</p>
+    <p class="text-center text-info">
+        <button class="btn btn-primary" onclick="newGame()">New Game</button>
+    </p>
 
     <div class="image-grid d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex flex-row">
@@ -49,7 +52,7 @@
         <div class="d-flex flex-row">
             <div class="img-fluid"><img src="treasureBox.jpg" id="10" onclick="check(10)" height="100" width="100"
                     alt="treasureBox"></div>
-            <div class="img-fluid"><img src="treasureBox.jpg" id="10" onclick="check(11)" height="100" width="100"
+            <div class="img-fluid"><img src="treasureBox.jpg" id="11" onclick="check(11)" height="100" width="100"
                     alt="treasureBox"></div>
             <div class="img-fluid"><img src="treasureBox.jpg" id="12" onclick="help()" height="100" width="100"
                     alt="treasureBox"></div>
@@ -132,6 +135,21 @@
         document.getElementById('help').innerText = result
         score += 2
         document.getElementById('score').innerText = "Score is: " + score
+    }
+
+    function newGame() {
+        // Random function
+        let randomNumber = Math.floor(Math.random() * (23 - 0 + 1) + 0);
+        console.log(randomNumber)
+        treasureLocation = randomNumber
+        score = 0
+        chestCount = 0
+        document.getElementById('score').innerText = "Score is: "+ score
+        document.getElementById('chests').innerText = "Number of chests: " + chestCount
+        ids.forEach(i => {
+             
+                document.getElementById(i).src="treasureBox.jpg"
+        })
     }
 </script>
 

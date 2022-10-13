@@ -46,6 +46,7 @@
     <button onclick="makeNewDiv()">Add value</button>
     <button onclick="get()">Get</button>
     <button onclick="spin()">Spin</button>
+    <button onclick="swap()">Swap</button>
 
 
 </body>
@@ -82,7 +83,25 @@
         ele.innerText = removedText
         document.getElementById('target').insertBefore(ele, document.getElementById('target').firstChild)
        }
-       
+    }
+
+    function swap(){
+        let cyclerItems  = document.getElementsByClassName('cycler')
+        
+        if(cyclerItems.length > 2){
+            // Random function
+            let random1 = Math.floor(Math.random() * ((cyclerItems.length -1) - 0 + 1) + 0)
+            let random2 = Math.floor(Math.random() * ((cyclerItems.length -1) - 0 + 1) + 0)
+                    
+           if(random1!=random2){
+            let removedText1 = cyclerItems[random1].innerText
+            let removedText2 = cyclerItems[random2].innerText
+            cyclerItems[random1].innerText = removedText2
+            cyclerItems[random2].innerText = removedText1
+            }
+
+        }
+
     }
 </script>
 
